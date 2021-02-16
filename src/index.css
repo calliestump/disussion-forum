@@ -4,3 +4,10 @@ body {
   padding-top: 1%;
 }
 
+::placeholder {
+  text-align: center;
+}
+
+input, textarea, button {
+  padding: .75%;
+}

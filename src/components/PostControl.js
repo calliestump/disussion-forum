@@ -1,7 +1,7 @@
 import React from "react";
 import NewPostForm from './NewPostForm';
 import PostList from './PostList';
-// import $ from 'jquery';
+import $ from 'jquery';
 import PostDetail from './PostDetail';
 import EditPostForm from './EditPostForm';
 
@@ -62,11 +62,19 @@ export default class PostControl extends React.Component {
     });
   }
 
+  handleDeletingPost = (id) => {
+    const newMasterPostList = this.state.masterPostList.filter(post => post.id !== id)
+    this.setState({
+      masterPostList: newMasterPostList,
+      selectedPost: null
+    });
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    // if(this.state.postList === 0){
-    //   $("h1.title").hide()
+    // if(this.state.postList === []){
+    //   $("h2.title").hide()
     // }
     if(this.state.editing){
       currentlyVisibleState = 
@@ -80,21 +88,22 @@ export default class PostControl extends React.Component {
       <PostDetail 
       post={this.state.selectedPost} 
       onClickingEdit = {this.handleEditClick}
+      onClickingDelete = {this.handleDeletingPost}
       />
-      buttonText = "Go Back To Posts"
+      buttonText = "Go Back To Timeline"
     } else if (this.state.formVisibleOnPage){
       currentlyVisibleState = 
       <NewPostForm 
       onNewPostCreation={this.handleAddingNewPostToList}
       />
-      buttonText = "Return to Posts";
+      buttonText = "Return to Timeline";
     } else {
       currentlyVisibleState = 
       <PostList
       postList={this.state.masterPostList}
       onPostSelection={this.handleChangingSelectedPost}
       />;
-      buttonText = "Add Posts";
+      buttonText = "Create Post";
     }
     return(
       <>

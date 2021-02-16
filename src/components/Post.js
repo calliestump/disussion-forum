@@ -9,6 +9,7 @@ export default function Post(props){
         <h3>Votes: {props.votes}</h3>
         <h3>Date Posted: {props.timestamp}</h3>
         <hr/>
+        <br />
       </div>
     </>
   );
