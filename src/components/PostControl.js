@@ -3,6 +3,7 @@ import NewPostForm from './NewPostForm';
 import PostList from './PostList';
 // import $ from 'jquery';
 import PostDetail from './PostDetail';
+import EditPostForm from './EditPostForm';
 
 
 export default class PostControl extends React.Component {
@@ -12,9 +13,11 @@ export default class PostControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       masterPostList: [],
-      selectedPost: null
+      selectedPost: null,
+      editing: false
     };
   }
+
 
   
   // Add HandleCLick to get a functioning 'add post' button.
@@ -22,7 +25,8 @@ export default class PostControl extends React.Component {
     if (this.state.selectedPost != null) {
       this.setState({
         formVisibleOnPage: false,
-        selectedPost: null
+        selectedPost: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
@@ -43,20 +47,42 @@ export default class PostControl extends React.Component {
     this.setState({selectedPost: selectedPost});
   }
 
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
+  handleEditingPostInList = (postToEdit) => {
+    const editedMasterPostList = this.state.masterPostList
+      .filter(post => post.id !== this.state.selectedPost.id)
+      .concat(postToEdit);
+    this.setState({
+      masterPostList: editedMasterPostList,
+      editing: false,
+      selectedPost: null
+    });
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
     // if(this.state.postList === 0){
     //   $("h1.title").hide()
     // }
-    if (this.state.selectedPost != null){
+    if(this.state.editing){
+      currentlyVisibleState = 
+      <EditPostForm 
+      post={this.state.selectedPost} 
+      onEditPost = {this.handleEditingPostInList}
+      />
+      buttonText = "Return to Post List";
+    } else if (this.state.selectedPost != null){
       currentlyVisibleState = 
       <PostDetail 
       post={this.state.selectedPost} 
+      onClickingEdit = {this.handleEditClick}
       />
       buttonText = "Go Back To Posts"
-    }
-    else if (this.state.formVisibleOnPage){
+    } else if (this.state.formVisibleOnPage){
       currentlyVisibleState = 
       <NewPostForm 
       onNewPostCreation={this.handleAddingNewPostToList}

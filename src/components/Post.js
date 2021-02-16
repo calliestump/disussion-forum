@@ -7,7 +7,6 @@ export default function Post(props){
       <div onClick = {() => props.whenPostClicked(props.id)}>
         <h3>User: {props.name}</h3>
         <h3>Votes: {props.votes}</h3>
-        <h3>Text: {props.postText}</h3>
         <h3>Date Posted: {props.timestamp}</h3>
         <hr/>
       </div>

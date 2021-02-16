@@ -7,7 +7,7 @@ export default function PostList(props) {
   return (
     <>
       {/* {props.postList.length === 0 ? <h2 class="title"><strong>No posts have been added to timeline.</strong></h2> : <h2 class="title"><strong>POSTS</strong></h2> */}
-      <h2 className="title"><strong>POSTS</strong></h2>
+      <h2 className="title"><strong>POSTS</strong></h2><br />
       {props.postList.map((post) => 
         <Post 
         whenPostClicked = { props.onPostSelection }
