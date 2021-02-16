@@ -1,37 +1,32 @@
 import React from "react";
 import Post from "./Post";
 import PropTypes from "prop-types";
+// import $ from "jquery";
 
-const masterPostList = [
-  {
-  name: "test",
-  timestamp: "time",
-  votes: 10,
-  postText: "hello"
-  },
-  {
-  name: "test2",
-  timestamp:"time2",
-  votes: 11,
-  postText: "hello2"
-  }
-];
 export default function PostList(props) {
   return (
     <>
-      {masterPostList.map((post, index) => 
+      {/* {props.postList.length === 0 ? <h2 class="title"><strong>No posts have been added to timeline.</strong></h2> : <h2 class="title"><strong>POSTS</strong></h2> */}
+      <h2 className="title"><strong>POSTS</strong></h2>
+      {props.postList.map((post) => 
         <Post 
+        whenPostClicked = { props.onPostSelection }
         name={post.name}
         timestamp={post.timestamp}
         votes={post.votes}
         postText={post.postText}
-        key={index} 
+        id={post.id}
+        key={post.id} 
         />
-      )}
+        )}
     </>
   )
+  // if(props.postList.length < 1) {
+  //   $("h2.title").hide();
+  // }
 }
 
 PostList.propTypes = {
-  postList: PropTypes.array
+  postList: PropTypes.array,
+  onPostSelection: PropTypes.func
 }

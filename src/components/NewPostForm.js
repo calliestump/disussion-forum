@@ -4,6 +4,7 @@ import ReusableForm from './ReusableForm';
 import PropTypes from 'prop-types';
 
 export default function NewPostForm(props){
+
   function handleNewPostFormSubmission(event){
     event.preventDefault();
     props.onNewPostCreation({
@@ -25,4 +26,4 @@ export default function NewPostForm(props){
 
 NewPostForm.propTypes = {
   onNewPostCreation: PropTypes.func
-}
+};

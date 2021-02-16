@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 export default function ResuableForm(props){
   return (
     <>
-      <h1><u>Make a Post</u></h1> 
+      <h2><u>Make a Post</u></h2> 
+      <br />
       <form onSubmit={props.formSubmissionHandler}>
         <input 
           type="text"
@@ -18,7 +19,7 @@ export default function ResuableForm(props){
         />
         <br /><br />
         <button type="submit">{props.buttonText}</button>
-        <br />
+        <br /><br />
       </form>
     </>
   );
@@ -27,4 +28,4 @@ export default function ResuableForm(props){
 ResuableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
   buttonText: PropTypes.string
-}
+};
