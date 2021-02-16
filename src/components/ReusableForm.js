@@ -10,13 +10,13 @@ export default function ResuableForm(props){
           type="text"
           name="name"
           placeholder="user-name"
-        />
+        /><br /><br />
         <textarea
           type="text"
           name="postText"
           placeholder="What are you thinking?..."
         />
-        <br />
+        <br /><br />
         <button type="submit">{props.buttonText}</button>
         <br />
       </form>

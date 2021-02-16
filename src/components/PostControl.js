@@ -4,7 +4,8 @@ import PostList from './PostList';
 
 
 export default class PostControl extends React.Component {
-  constructor(props){
+  
+  constructor(props) {
     super(props);
     this.state = {
       formVisibleOnPage: false,
@@ -15,6 +16,13 @@ export default class PostControl extends React.Component {
   handleAddingNewPostToList = (newPost) => {
     const newMasterPostList = this.state.masterPostList.concat(newPost);
     this.setState({masterPostList: newMasterPostList, formVisibleOnPage: false})
+  }
+
+  // Add HandleCLick to get a functioning 'add post' button.
+  handleClick = () => {
+    this.setState(prevState => ({
+      formVisibleOnPage: !prevState.formVisibleOnPage
+    }));
   }
 
   render(){
@@ -36,7 +44,7 @@ export default class PostControl extends React.Component {
     return(
       <>
         {currentlyVisibleState}
-        <button>{buttonText}</button>
+        <button onClick={this.handleClick}>{buttonText}</button>
       </>
     );
   }
