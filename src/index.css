@@ -11,3 +11,14 @@ body {
 input, textarea, button {
   padding: .75%;
 }
+
+.jumbotron {
+  background-color:  rgb(218, 218, 211);
+  border-style: solid;
+  border-color: rgb(172, 172, 165);
+}
+
+.userName {
+  float: left;
+  margin-top: -5%;
+}

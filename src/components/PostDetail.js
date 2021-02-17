@@ -7,9 +7,11 @@ export default function PostDetail(props){
   return (
     <>
       <h2><strong>Post Details</strong></h2><br />
-      <h3>User: {post.name}</h3>
+      <div className="jumbotron">
+        <h3 className="userName"><strong><u>{post.name}</u></strong></h3>
+        <h3>{post.postText}</h3>
+      </div>
       <h3>Votes: {post.votes}</h3>
-      <h3>Text: {post.postText}</h3>
       <h3>Timestamp: {post.timestamp}</h3><br />
       <button className="edit" onClick = {props.onClickingEdit}>Edit Post</button>
       <button className="delete" onClick = {() => onClickingDelete(post.id)}>Delete Post</button>
