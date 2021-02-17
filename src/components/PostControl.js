@@ -1,7 +1,6 @@
 import React from "react";
 import NewPostForm from './NewPostForm';
 import PostList from './PostList';
-import $ from 'jquery';
 import PostDetail from './PostDetail';
 import EditPostForm from './EditPostForm';
 import { connect } from 'react-redux';
@@ -19,8 +18,6 @@ export default class PostControl extends React.Component {
     };
   }
 
-  
-  // Add HandleCLick to get a functioning 'add post' button.
   handleClick = () => {
     if (this.state.selectedPost != null) {
       this.setState({
@@ -36,7 +33,6 @@ export default class PostControl extends React.Component {
   
   handleAddingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
-    const { name, postText, timestamp, votes, id } = newPost;
     const action = a.addPost(newPost);
     dispatch(action);
     const action2 = a.toggleForm();
@@ -54,7 +50,6 @@ export default class PostControl extends React.Component {
 
   handleEditingPostInList = (postToEdit) => {
     const { dispatch } = this.props;
-    const { name, postText, timestamp, votes, id } = postToEdit;
     const action = a.addPost(postToEdit);
     dispatch(action);
     this.setState({
@@ -73,9 +68,6 @@ export default class PostControl extends React.Component {
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    // if(this.state.postList === []){
-    //   $("h2.title").hide()
-    // }
     if(this.state.editing){
       currentlyVisibleState = 
       <EditPostForm 

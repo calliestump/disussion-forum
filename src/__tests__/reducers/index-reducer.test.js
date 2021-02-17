@@ -2,6 +2,7 @@ import rootReducer from '../../reducers/index';
 import {createStore} from 'redux';
 import formVisibleReducer from '../../reducers/form-visible-reducer';
 import postListReducer from '../../reducers/post-list-reducer';
+import * as c from './../../actions/ActionTypes';
 
 let store = createStore(rootReducer);
 
@@ -24,7 +25,7 @@ describe("rootReducer", () => {
 
   test('check that ADD_POST action works for postListReducer and root reducer', ()=> {
     const action = {
-      type: 'ADD_POST',
+      type: c.ADD_POST,
       name: 'Britney & Britney',
       postText: 'foobar!',
       timestamp: '2/17/2021, 9:08:12 AM',
