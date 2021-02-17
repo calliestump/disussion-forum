@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Jumbotron} from 'react-bootstrap';
 
 export default function Post(props){
   return (
     <>
       <div onClick = {() => props.whenPostClicked(props.id)}>
-        <h3>User: {props.name}</h3>
-        <h3>Votes: {props.votes}</h3>
-        <h3>Date Posted: {props.timestamp}</h3>
-        <hr/>
-        <br />
+        <Jumbotron>
+          
+          <h3>User: {props.name}</h3>
+          <h3>Votes: {props.votes}</h3>
+          <h3>Date Posted: {props.timestamp}</h3>
+        </Jumbotron>
+        <hr />
       </div>
     </>
   );

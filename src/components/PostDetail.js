@@ -12,7 +12,7 @@ export default function PostDetail(props){
         <h3>{post.postText}</h3>
       </div>
       <h3>Votes: {post.votes}</h3>
-      <h3>Timestamp: {post.timestamp}</h3><br />
+      <h3 className="timestamp">Timestamp: {post.timestamp}</h3><br />
       <button className="edit" onClick = {props.onClickingEdit}>Edit Post</button>
       <button className="delete" onClick = {() => onClickingDelete(post.id)}>Delete Post</button>
       <br /><br />
