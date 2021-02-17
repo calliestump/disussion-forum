@@ -4,6 +4,8 @@ import PostList from './PostList';
 import $ from 'jquery';
 import PostDetail from './PostDetail';
 import EditPostForm from './EditPostForm';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 export default class PostControl extends React.Component {
@@ -12,7 +14,6 @@ export default class PostControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      masterPostList: [],
       selectedPost: null,
       editing: false
     };
@@ -36,15 +37,23 @@ export default class PostControl extends React.Component {
   }
   
   handleAddingNewPostToList = (newPost) => {
-    const newMasterPostList = this.state.masterPostList.concat(newPost);
-    console.log(newPost);
-    console.log(this.state.newMasterPostList);
-    this.setState({masterPostList: newMasterPostList, formVisibleOnPage: false});
+    const { dispatch } = this.props;
+    const { name, postText, timestamp, votes, id } = newPost;
+    const action = {
+      type: 'ADD_POST',
+      name: name,
+      postText: postText,
+      timestamp: timestamp,
+      votes: votes,
+      id: id
+    }
+    dispatch(action);
+    this.setState({ formVisibleOnPage: false });
   }
 
   handleChangingSelectedPost = (id) => {
-    const selectedPost = this.state.masterPostList.filter(post => post.id === id)[0]
-    this.setState({selectedPost: selectedPost});
+    const selectedPost = this.props.masterPostList[id]
+    this.setState({ selectedPost: selectedPost });
   }
 
   handleEditClick = () => {
@@ -52,22 +61,31 @@ export default class PostControl extends React.Component {
   }
 
   handleEditingPostInList = (postToEdit) => {
-    const editedMasterPostList = this.state.masterPostList
-      .filter(post => post.id !== this.state.selectedPost.id)
-      .concat(postToEdit);
+    const { dispatch } = this.props;
+    const { name, postText, timestamp, votes, id } = postToEdit;
+    const action = {
+      type: 'ADD_POST',
+      name: name,
+      postText: postText,
+      timestamp: timestamp,
+      votes: votes,
+      id: id
+    }
+    dispatch(action);
     this.setState({
-      masterPostList: editedMasterPostList,
       editing: false,
       selectedPost: null
     });
   }
 
   handleDeletingPost = (id) => {
-    const newMasterPostList = this.state.masterPostList.filter(post => post.id !== id)
-    this.setState({
-      masterPostList: newMasterPostList,
-      selectedPost: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_POST', 
+      id: id
+    }
+    dispatch(action);
+    this.setState({ selectedPost: null });
   }
 
   render(){
@@ -100,7 +118,7 @@ export default class PostControl extends React.Component {
     } else {
       currentlyVisibleState = 
       <PostList
-      postList={this.state.masterPostList}
+      postList={this.props.masterPostList}
       onPostSelection={this.handleChangingSelectedPost}
       />;
       buttonText = "Create Post";
@@ -115,34 +133,14 @@ export default class PostControl extends React.Component {
 
 }
 
-// if (this.state.formVisibleOnPage) {
-//   currentlyVisibleState = 
-//   <NewKegForm
-//   onNewKegCreation={this.handleAddingNewKegToList} 
-//   />
-//   buttonText = "Return to Keg List";
-// } else {
-//   currentlyVisibleState = 
-//   <KegList 
-//   kegList={this.state.masterKegList}
-//   onKegSelection={this.handleChangingSelectedKeg}
-//   />;
-//   buttonText = "Add Keg";
-// }
+PostControl.propTypes = {
+  masterPostList: PropTypes.object
+};
 
-// LHTP
-// render(){
-//   let currentlyVisibleState = null;
-//   if (this.state.formVisibleOnPage) {
-//     currentlyVisibleState = <NewTicketForm />
-//   } else {
-//     currentlyVisibleState = <TicketList />
-//   }
-//   return (
-//     <React.Fragment>
-//       {currentlyVisibleState}
-//     </React.Fragment>
-//   );
-// }
+const mapStateToProps = state => {
+  return {
+    masterPostList: state
+  }
+}
 
-// }
+PostControl = connect(mapStateToProps)(PostControl);
