@@ -76,12 +76,12 @@ describe('postListReducer', () => {
       votes: votes,
       id: id
     };
-    expect(postListReducer(postData, action)).toEqual({
+    expect(postListReducer(postData, action)).toMatchObject({
       1: {
         name: 'Ryan & Aimen',
         postText: 'foobar!',
         timestamp: '2/17/2021, 9:08:12 AM',
-        votes: 1,
+        votes: 2,
         id: 1
       }
     });

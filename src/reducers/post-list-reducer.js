@@ -20,7 +20,7 @@ export default (state = {}, action) => {
         name: name,
         postText: postText,
         timestamp: timestamp,
-        votes: votes,
+        votes: votes + 1,
         id: id
       }
     })
@@ -32,4 +32,5 @@ export default (state = {}, action) => {
     return state;
   }
 };
+
 
