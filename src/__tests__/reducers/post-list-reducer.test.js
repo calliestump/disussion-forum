@@ -65,6 +65,28 @@ describe('postListReducer', () => {
     });
   });
 
+  test('Should successfully add a vote to total post votes', () => {
+    const { name, postText, timestamp, votes, id } = postData;
+    // const add1 = votes + 1;
+    action = {
+      type: c.UPVOTE_POST,
+      name: name,
+      postText: postText,
+      timestamp: timestamp,
+      votes: votes,
+      id: id
+    };
+    expect(postListReducer(postData, action)).toEqual({
+      1: {
+        name: 'Ryan & Aimen',
+        postText: 'foobar!',
+        timestamp: '2/17/2021, 9:08:12 AM',
+        votes: 1,
+        id: 1
+      }
+    });
+  });
+
 });
 
 // 2/17/2021, 9:08:12 AM

@@ -50,7 +50,7 @@ export default class PostControl extends React.Component {
 
   handleEditingPostInList = (postToEdit) => {
     const { dispatch } = this.props;
-    const action = a.addPost(postToEdit);
+    const action = a.addPost(postToEdit); 
     dispatch(action);
     this.setState({
       editing: false,
@@ -65,6 +65,17 @@ export default class PostControl extends React.Component {
     this.setState({ selectedPost: null });
   }
 
+  handleUpVote = () => {
+    // const selectedPost = this.props.masterPostList[id];
+    const selectedPost = this.state.selectedPost.id
+    this.setState({
+      votes: (this.selectedPost.props.votes + 1)
+    })
+    console.log(selectedPost.props.votes)
+  }
+
+  
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -78,6 +89,7 @@ export default class PostControl extends React.Component {
     } else if (this.state.selectedPost != null){
       currentlyVisibleState = 
       <PostDetail 
+      onClickingUpVote={this.handleUpVote}
       post={this.state.selectedPost} 
       onClickingEdit = {this.handleEditClick}
       onClickingDelete = {this.handleDeletingPost}

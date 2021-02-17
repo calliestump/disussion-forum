@@ -13,6 +13,17 @@ export default (state = {}, action) => {
         id
       }
     });
+  case c.UPVOTE_POST:
+    // const add1 = votes + 1;
+    return Object.assign({}, state, {
+      [id]: {
+        name: name,
+        postText: postText,
+        timestamp: timestamp,
+        votes: votes,
+        id: id
+      }
+    })
   case c.DELETE_POST:
     let newState = { ...state };
     delete newState[id];
@@ -21,3 +32,4 @@ export default (state = {}, action) => {
     return state;
   }
 };
+

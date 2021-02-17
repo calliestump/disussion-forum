@@ -18,4 +18,12 @@ export const addPost = (post) => {
     id: id
   }
 }
+export const upVotePost = (post) => {
+  const {votes, id} = post;
+  return {
+    type: 'UPVOTE_POST',
+    votes: votes + 1,
+    id: id
+  }
+}
 
