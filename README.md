@@ -6,13 +6,12 @@
 <hr>
 
 ## **Description**
-This is a website recreates a basic subreddit and/or vote-based discussion board using React and Redux
+This is a website that recreates a basic subreddit and/or vote-based discussion board using React and Redux
 
 
 ## Known Bug
-Upvote button event handler not functioning correctly.
+Down vote button event handler not functioning correctly.
 
-## User Stories
 ### **📖 User Stories**
 <details>
 <summary>Expand</summary>

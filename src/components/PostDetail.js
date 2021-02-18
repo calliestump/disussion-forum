@@ -11,7 +11,7 @@ export default function PostDetail(props){
       <div className="jumbotron">
         <h3 className="userName"><strong><u>{post.name}</u></strong></h3>
         <h3>{post.postText}</h3>
-        <button className="upVote" onClick ={() => onClickingUpVote() }>Up Vote</button>
+        <button className="upVote" onClick ={() => onClickingUpVote(post) }>Up Vote</button>
         {/* <button className="downVote" onClick ={() => onClickingDownVote() }>Down Vote</button> */}
       </div>
       <h3>Votes: {post.votes}</h3>

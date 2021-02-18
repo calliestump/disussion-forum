@@ -25,7 +25,7 @@ export const upVotePost = (post) => {
     name: name,
     postText: postText,
     timestamp: timestamp,
-    votes: votes + 1,
+    votes: votes,
     id: id
   }
 }

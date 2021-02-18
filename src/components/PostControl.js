@@ -6,7 +6,7 @@ import EditPostForm from './EditPostForm';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as a from './../actions';
-
+// import upVotePost from './../actions';
 
 export default class PostControl extends React.Component {
   
@@ -31,23 +31,16 @@ export default class PostControl extends React.Component {
     }
   }
   
-  handleAddingNewPostToList = (newPost) => {
-    const { dispatch } = this.props;
-    const action = a.addPost(newPost);
-    dispatch(action);
-    const action2 = a.toggleForm();
-    dispatch(action2);
-  }
-
+  
   handleChangingSelectedPost = (id) => {
     const selectedPost = this.props.masterPostList[id]
     this.setState({ selectedPost: selectedPost });
   }
-
+  
   handleEditClick = () => {
     this.setState({editing: true});
   }
-
+  
   handleEditingPostInList = (postToEdit) => {
     const { dispatch } = this.props;
     const action = a.addPost(postToEdit); 
@@ -57,21 +50,34 @@ export default class PostControl extends React.Component {
       selectedPost: null
     });
   }
-
+  
   handleDeletingPost = (id) => {
     const { dispatch } = this.props;
     const action = a.deletePost(id);
     dispatch(action);
     this.setState({ selectedPost: null });
   }
-
-  handleUpVote = (id) => {
+  
+  handleAddingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
-    const action = a.upVotePost(id);
+    const action = a.addPost(newPost);
     dispatch(action);
-    // this.setState({
-    //   selectedPost: false
-    // })
+    const action2 = a.toggleForm();
+    dispatch(action2);
+  }
+
+  handleUpVote = (post) => {
+    // const selectedPost = this.props.masterPostList[id]
+    const { dispatch } = this.props;
+    const action = a.upVotePost(post);
+    dispatch(action);
+    // const action2 = a.toggleForm();
+    // dispatch(action2);
+    this.setState({
+      selectedPost: null,
+      editing: false
+    })
+    // console.log(this.post);
   }
 
   

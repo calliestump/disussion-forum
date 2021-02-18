@@ -12,6 +12,7 @@ export default function NewPostForm(props){
     props.onNewPostCreation({
       name: event.target.name.value,
       postText: event.target.postText.value,
+      votes: 0,
       id: v4(),
       timestamp: currentTime
     })
