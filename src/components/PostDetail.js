@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function PostDetail(props){
-  const { post, onClickingDelete, onClickingUpVote } = props;
+  const { post, onClickingDelete, onClickingUpVote, onClickingDownVote} = props;
   let downVote;
   let upVote;
   return (
@@ -12,6 +12,7 @@ export default function PostDetail(props){
         <h3 className="userName"><strong><u>{post.name}</u></strong></h3>
         <h3>{post.postText}</h3>
         <button className="upVote" onClick ={() => onClickingUpVote(post) }>Up Vote</button>
+        <button className="downVote" onClick ={() => onClickingDownVote(post) }>Down Vote</button>
         {/* <button className="downVote" onClick ={() => onClickingDownVote() }>Down Vote</button> */}
       </div>
       <h3>Votes: {post.votes}</h3>

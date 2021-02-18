@@ -67,17 +67,23 @@ export default class PostControl extends React.Component {
   }
 
   handleUpVote = (post) => {
-    // const selectedPost = this.props.masterPostList[id]
     const { dispatch } = this.props;
     const action = a.upVotePost(post);
     dispatch(action);
-    // const action2 = a.toggleForm();
-    // dispatch(action2);
     this.setState({
       selectedPost: null,
       editing: false
     })
-    // console.log(this.post);
+  }
+
+  handleDownVote = (post) => {
+    const { dispatch } = this.props;
+    const action = a.downVotePost(post);
+    dispatch(action);
+    this.setState({
+      selectedPost: null,
+      editing: false
+    })
   }
 
   
@@ -96,6 +102,7 @@ export default class PostControl extends React.Component {
       currentlyVisibleState = 
       <PostDetail 
       onClickingUpVote={this.handleUpVote}
+      onClickingDownVote={this.handleDownVote}
       post={this.state.selectedPost} 
       onClickingEdit = {this.handleEditClick}
       onClickingDelete = {this.handleDeletingPost}

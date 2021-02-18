@@ -10,7 +10,7 @@ This is a website that recreates a basic subreddit and/or vote-based discussion 
 
 
 ## Known Bug
-Down vote button event handler not functioning correctly.
+Posts arent organized by votes.
 
 ### **📖 User Stories**
 <details>

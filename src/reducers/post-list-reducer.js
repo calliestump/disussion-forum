@@ -23,6 +23,16 @@ export default (state = {}, action) => {
         votes: votes + 1,
         id: id
       }
+    });
+  case c.DOWNVOTE_POST:
+    return Object.assign({}, state, {
+      [id]: {
+        name: name,
+        postText: postText,
+        timestamp: timestamp,
+        votes: votes - 1,
+        id: id
+      }
     })
   case c.DELETE_POST:
     let newState = { ...state };

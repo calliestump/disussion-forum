@@ -30,3 +30,14 @@ export const upVotePost = (post) => {
   }
 }
 
+export const downVotePost = (post) => {
+  const {name, postText, timestamp, votes, id} = post;
+  return {
+    type: 'DOWNVOTE_POST',
+    name: name,
+    postText: postText,
+    timestamp: timestamp,
+    votes: votes,
+    id: id
+  }
+}
