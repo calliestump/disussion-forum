@@ -66,13 +66,12 @@ export default class PostControl extends React.Component {
   }
 
   handleUpVote = (id) => {
-    const {dispatch} = this.props;
-    // const selectedPost = this.props.masterPostList[id];
-    const selectedPost = this.state.selectedPost.id
-    this.setState({
-      votes: (this.selectedPost.props.votes + 1)
-    })
-    console.log(selectedPost.props.votes)
+    const { dispatch } = this.props;
+    const action = a.upVotePost(id);
+    dispatch(action);
+    // this.setState({
+    //   selectedPost: false
+    // })
   }
 
   
